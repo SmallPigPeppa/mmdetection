@@ -44,8 +44,8 @@ def main():
     new_grid_size = 32
     old_grid_size = 32
     resize_type = 'pi'
-    src = 'setr_naive_vit-large_8x1_768x768_80k_cityscapes_20211123_000505-20728e80.pth'
-    dst = 'ms_ckpt/setr_naive_vit-large_8x1_384x384_80k_cityscapes_20211123_000505-20728e80_pi.pth'
+    src = 'vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294.pth'
+    dst = 'ms_ckpt/vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294_pi.pth'
 
 
     checkpoint = CheckpointLoader.load_checkpoint(src, map_location='cpu')
