@@ -63,31 +63,31 @@ def main():
     # mmengine.mkdir_or_exist(osp.dirname(dst))
     # torch.save(weight, dst)
 
-    # new_patch_size = 8
-    # new_grid_size = 64
-    # old_grid_size = 64
-    # resize_type = "pi"
-    # src = 'vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294.pth'
-    # dst = 'vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294_512x512_pi.pth'
-    #
-    # checkpoint = CheckpointLoader.load_checkpoint(src, map_location='cpu')
-    # if 'state_dict' in checkpoint:
-    #     # timm checkpoint
-    #     state_dict = checkpoint['state_dict']
-    # elif 'model' in checkpoint:
-    #     # deit checkpoint
-    #     state_dict = checkpoint['model']
-    # else:
-    #     state_dict = checkpoint
-    # weight = resize_patch_embed(
-    #     state_dict,
-    #     new_patch_size=new_patch_size,
-    #     new_grid_size=new_grid_size,
-    #     old_grid_size=old_grid_size,
-    #     resize_type=resize_type
-    # )
-    # mmengine.mkdir_or_exist(osp.dirname(dst))
-    # torch.save(weight, dst)
+    new_patch_size = 8
+    new_grid_size = 64
+    old_grid_size = 64
+    resize_type = "pi"
+    src = 'vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294.pth'
+    dst = 'vitdet_mask-rcnn_vit-b-mae_lsj-100e_20230328_153519-e15fe294_512x512_pi.pth'
+
+    checkpoint = CheckpointLoader.load_checkpoint(src, map_location='cpu')
+    if 'state_dict' in checkpoint:
+        # timm checkpoint
+        state_dict = checkpoint['state_dict']
+    elif 'model' in checkpoint:
+        # deit checkpoint
+        state_dict = checkpoint['model']
+    else:
+        state_dict = checkpoint
+    weight = resize_patch_embed(
+        state_dict,
+        new_patch_size=new_patch_size,
+        new_grid_size=new_grid_size,
+        old_grid_size=old_grid_size,
+        resize_type=resize_type
+    )
+    mmengine.mkdir_or_exist(osp.dirname(dst))
+    torch.save(weight, dst)
 
     new_patch_size = 4
     new_grid_size = 64
