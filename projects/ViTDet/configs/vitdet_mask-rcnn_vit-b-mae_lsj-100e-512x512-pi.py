@@ -14,7 +14,7 @@ batch_augments = [
 
 # model settings
 model = dict(
-    data_preprocessor=dict(pad_size_divisor=16, batch_augments=batch_augments),
+    data_preprocessor=dict(pad_size_divisor=32, batch_augments=batch_augments),
     backbone=dict(
         _delete_=True,
         type='ViT',
@@ -24,7 +24,7 @@ model = dict(
         depth=12,
         num_heads=12,
         drop_path_rate=0.1,
-        window_size=7,
+        window_size=14,
         mlp_ratio=4,
         qkv_bias=True,
         norm_cfg=backbone_norm_cfg,

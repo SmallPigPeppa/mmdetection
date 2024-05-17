@@ -26,12 +26,12 @@ def resize_patch_embed(state_dict, new_patch_size, new_grid_size, old_grid_size,
             f"{resize_type} is not a valid value for resize_type. Should be one of ['flexi', 'interpolate']"
         )
 
-    # Adjust position embedding
-    if "backbone.pos_embed" in state_dict.keys():
-        state_dict["backbone.pos_embed"] = resize_abs_pos_embed(
-            state_dict["backbone.pos_embed"], new_size=to_2tuple(new_grid_size), old_size=old_grid_size,
-            num_prefix_tokens=1
-        )
+    # # Adjust position embedding
+    # if "backbone.pos_embed" in state_dict.keys():
+    #     state_dict["backbone.pos_embed"] = resize_abs_pos_embed(
+    #         state_dict["backbone.pos_embed"], new_size=to_2tuple(new_grid_size), old_size=old_grid_size,
+    #         num_prefix_tokens=1
+    #     )
 
     return state_dict
 
