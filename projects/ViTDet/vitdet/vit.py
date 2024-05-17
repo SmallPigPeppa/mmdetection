@@ -346,7 +346,7 @@ class ViT(BaseModule):
     """Vision Transformer with support for patch or hybrid CNN input stage."""
 
     def __init__(self,
-                 img_size=1024,
+                 img_size=512,
                  patch_size=16,
                  in_chans=3,
                  embed_dim=768,

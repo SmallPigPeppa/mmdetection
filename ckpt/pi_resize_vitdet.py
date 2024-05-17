@@ -11,6 +11,16 @@ from utils import to_2tuple, interpolate_resize_patch_embed, pi_resize_patch_emb
 
 def resize_patch_embed(state_dict, new_patch_size, new_grid_size, old_grid_size, resize_type='pi'):
     # Adjust patch embedding
+    a = state_dict["backbone.patch_embed.proj.weight"]
+    b = pi_resize_patch_embed(
+        state_dict["backbone.patch_embed.proj.weight"],
+        to_2tuple(new_patch_size),
+    )
+    c = state_dict["backbone.pos_embed"]
+    d = resize_abs_pos_embed(
+        state_dict["backbone.pos_embed"], new_size=to_2tuple(new_grid_size), old_size=old_grid_size,
+        num_prefix_tokens=1
+    )
     if resize_type == "pi":
         state_dict["backbone.patch_embed.proj.weight"] = pi_resize_patch_embed(
             state_dict["backbone.patch_embed.proj.weight"],
