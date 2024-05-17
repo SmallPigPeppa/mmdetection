@@ -442,7 +442,7 @@ class ViT(BaseModule):
             self.load_state_dict(_state_dict, True)
 
     def forward(self, x):
-        x = F.interpolate(x, size=512, mode='bilinear')
+        x = F.interpolate(x, size=256, mode='bilinear', antialias=True)
         x = self.patch_embed(x)
         if self.pos_embed is not None:
             x = x + get_abs_pos(self.pos_embed, self.pretrain_use_cls_token,
