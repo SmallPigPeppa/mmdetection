@@ -438,7 +438,8 @@ class ViT(BaseModule):
                 self.init_cfg.checkpoint, logger=logger, map_location='cpu')
             if 'model' in ckpt:
                 _state_dict = ckpt['model']
-            self.load_state_dict(_state_dict, False)
+            # self.load_state_dict(_state_dict, False)
+            self.load_state_dict(_state_dict, True)
 
     def forward(self, x):
         x = self.patch_embed(x)
