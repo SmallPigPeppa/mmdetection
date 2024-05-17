@@ -24,7 +24,7 @@ class LN2d(nn.Module):
         self.weight = nn.Parameter(torch.ones(normalized_shape))
         self.bias = nn.Parameter(torch.zeros(normalized_shape))
         self.eps = eps
-        self.normalized_shape = (normalized_shape, )
+        self.normalized_shape = (normalized_shape,)
 
     def forward(self, x):
         u = x.mean(1, keepdim=True)
@@ -181,7 +181,7 @@ class Attention(nn.Module):
         super().__init__()
         self.num_heads = num_heads
         head_dim = dim // num_heads
-        self.scale = head_dim**-0.5
+        self.scale = head_dim ** -0.5
 
         self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
         self.proj = nn.Linear(dim, dim)
@@ -254,18 +254,18 @@ class Mlp(nn.Module):
 class Block(nn.Module):
 
     def __init__(
-        self,
-        dim,
-        num_heads,
-        mlp_ratio=4.0,
-        qkv_bias=True,
-        drop_path=0.0,
-        norm_cfg=dict(type='LN', eps=1e-6),
-        act_cfg=dict(type='GELU'),
-        use_rel_pos=False,
-        rel_pos_zero_init=True,
-        window_size=0,
-        input_size=None,
+            self,
+            dim,
+            num_heads,
+            mlp_ratio=4.0,
+            qkv_bias=True,
+            drop_path=0.0,
+            norm_cfg=dict(type='LN', eps=1e-6),
+            act_cfg=dict(type='GELU'),
+            use_rel_pos=False,
+            rel_pos_zero_init=True,
+            window_size=0,
+            input_size=None,
     ):
         super().__init__()
         self.norm1 = build_norm_layer(norm_cfg, dim)[1]
@@ -346,7 +346,7 @@ class ViT(BaseModule):
     """Vision Transformer with support for patch or hybrid CNN input stage."""
 
     def __init__(self,
-                 img_size=512,
+                 img_size=1024,
                  patch_size=16,
                  in_chans=3,
                  embed_dim=768,
@@ -378,7 +378,11 @@ class ViT(BaseModule):
 
         if use_abs_pos:
             num_patches = (pretrain_img_size // patch_size) * (
-                pretrain_img_size // patch_size)
+                    pretrain_img_size // patch_size)
+            print('##########################################')
+            print("num_patches: ", num_patches)
+            import pdb;pdb.set_trace()
+            print('##########################################')
             num_positions = (num_patches +
                              1) if pretrain_use_cls_token else num_patches
             self.pos_embed = nn.Parameter(
