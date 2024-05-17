@@ -38,6 +38,7 @@ def get_abs_pos(abs_pos, has_cls_token, hw):
     h, w = hw
     if has_cls_token:
         abs_pos = abs_pos[:, 1:]
+    import pdb;pdb.set_trace()
     xy_num = abs_pos.shape[1]
     size = int(math.sqrt(xy_num))
     assert size * size == xy_num
@@ -379,10 +380,11 @@ class ViT(BaseModule):
         if use_abs_pos:
             num_patches = (pretrain_img_size // patch_size) * (
                     pretrain_img_size // patch_size)
-            print('##########################################')
-            print("num_patches: ", num_patches)
-            import pdb;pdb.set_trace()
-            print('##########################################')
+            num_patches = 196
+            # print('##########################################')
+            # print("num_patches: ", num_patches)
+            # import pdb;pdb.set_trace()
+            # print('##########################################')
             num_positions = (num_patches +
                              1) if pretrain_use_cls_token else num_patches
             self.pos_embed = nn.Parameter(

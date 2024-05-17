@@ -19,6 +19,7 @@ model = dict(
         _delete_=True,
         type='ViT',
         img_size=512,
+        # pretrain_img_size=112,
         patch_size=8,
         embed_dim=768,
         depth=12,
