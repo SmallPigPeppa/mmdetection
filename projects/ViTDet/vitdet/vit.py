@@ -363,7 +363,7 @@ class ViT(BaseModule):
                  rel_pos_zero_init=True,
                  window_size=0,
                  window_block_indexes=(0, 1, 3, 4, 6, 7, 9, 10),
-                 pretrain_img_size=112,
+                 pretrain_img_size=224,
                  pretrain_use_cls_token=True,
                  init_cfg=None):
 
