@@ -38,7 +38,7 @@ def get_abs_pos(abs_pos, has_cls_token, hw):
     h, w = hw
     if has_cls_token:
         abs_pos = abs_pos[:, 1:]
-    import pdb;pdb.set_trace()
+    # import pdb;pdb.set_trace()
     xy_num = abs_pos.shape[1]
     size = int(math.sqrt(xy_num))
     assert size * size == xy_num
