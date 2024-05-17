@@ -1,13 +1,13 @@
 _base_ = [
     '../../../configs/_base_/models/mask-rcnn_r50_fpn.py',
-    './lsj-100e_coco-instance-512x512.py',
+    './lsj-100e_coco-instance-1024x1024.py',
 ]
 
 custom_imports = dict(imports=['projects.ViTDet.vitdet'])
 
 backbone_norm_cfg = dict(type='LN', requires_grad=True)
 norm_cfg = dict(type='LN2d', requires_grad=True)
-image_size = (512, 512)
+image_size = (1024, 1024)
 batch_augments = [
     dict(type='BatchFixedSizePad', size=image_size, pad_mask=True)
 ]
@@ -18,8 +18,8 @@ model = dict(
     backbone=dict(
         _delete_=True,
         type='ViT',
-        img_size=1024,
-        patch_size=16,
+        img_size=512,
+        patch_size=8,
         embed_dim=768,
         depth=12,
         num_heads=12,
